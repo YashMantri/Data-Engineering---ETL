@@ -14,6 +14,7 @@ class Health_Data_NY:
         self.column_list = []
         self.extracted_data = None
         self.transformed_data = None
+        self.fetch_data = None
 
     def etl(self):
         start_time = time()
@@ -105,18 +106,38 @@ class Health_Data_NY:
 
         # Implementing Multi-threading to Load and Fetch Data
         print("Number of threads = "+str(self.number_of_threads))
-        result = db.loadAndFetchData(self.number_of_threads)
-        print("Length of fetch result = "+str(len(result)))
+        self.fetch_data = db.loadAndFetchData(self.number_of_threads)
+        print("Length of fetch result = "+str(len(self.fetch_data)))
         # # Check Length of Data in each County
-        # for county in result:
-        #     print("county = "+county+", Length = "+str(len(result[county])))
+        # for county in self.fetch_data:
+        #     print("county = "+county+", Length = "+str(len(self.fetch_data[county])))
+        result = {}
+        result['transformed_data'] = self.transformed_data
+        result['fetch_data'] = self.fetch_data
+        return result
+
+    def UnitTesting(self):
+        print("Result of unit test is as follows:")
+        # Error check for mismatch
+        # self.fetch_data["Yates"] = []
+        for county in self.fetch_data:
+            print("county = "+county)
+            print("Length of data from API for "+county+" = "+str(len(self.transformed_data[county])))
+            print("Length of data from the DB for "+county+" = "+str(len(self.fetch_data[county])))
+            if len(self.transformed_data[county]) == len(self.fetch_data[county]):
+                print("Success: Counts match")
+            else:
+                print("ERROR: Mismtach in the count for county: "+county)
 
 if __name__ == '__main__':
     # Base Data - config
     source_data_url = "https://health.data.ny.gov/api/views/xdss-u53e/rows.json?accessType=DOWNLOAD"
     db_name = "ETL_Health_data_NY.db"
-    number_of_threads = 31
+    number_of_threads = 15
     columns_required = ["Test_Date", "New_Positives", "Cumulative_New_Positives", "Total_Tests_Performed", "Cumulative_Tests_Performed", "Load_Date"]
     # Create object and perform ETL
     etl_obj = Health_Data_NY(source_data_url, db_name, columns_required, number_of_threads)
     etl_obj.etl()
+
+    # Unit Tests
+    etl_obj.UnitTesting()
