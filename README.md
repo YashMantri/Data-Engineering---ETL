@@ -20,7 +20,9 @@ Python, Sqlite Database, Crontab
 pip install urllib
 
 pip install json
+
 pip install sqlite3
+
 pip install python-crontab
 
 # Steps to setup the cron for the application:
