@@ -18,6 +18,7 @@ Python, Sqlite Database, Crontab
 
 # Requirements:
 pip install urllib
+
 pip install json
 pip install sqlite3
 pip install python-crontab
