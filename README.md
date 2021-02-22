@@ -11,10 +11,10 @@ Python, Sqlite Database, Crontab
 4) Implement the Unit Tests
 
 # Assumptions:
-Everyday the data collected from the API is for the last few days.
-Historical data present retrieved from the API is correct.
-For a given county, latest Test date is retrieved and all the data upto that test date is neglected (To make sure we follow the incremental process).
-For the unit tests, count of data from the API and count of data from the DB are checked (As we have not created stage tables).
+1) Everyday the data collected from the API is for the last few days.
+2) Historical data present retrieved from the API is correct.
+3) For a given county, latest Test date is retrieved and all the data upto that test date is neglected (To make sure we follow the incremental process).
+4) For the unit tests, count of data from the API and count of data from the DB are checked (As we have not created stage tables).
 
 # Requirements:
 pip install urllib
