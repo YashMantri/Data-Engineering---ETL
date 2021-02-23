@@ -13,11 +13,17 @@ API : https://health.data.ny.gov/api/views/xdss-u53e/rows.json?accessType=DOWNLO
 By following the ETL process, extract the data for each county in New York state from
 the above API, and load them into individual tables in the database. Each county table
 should contain following columns :
+
 ❖ Test Date
+
 ❖ New Positives
+
 ❖ Cumulative Number of Positives
+
 ❖ Total Number of Tests Performed
+
 ❖ Cumulative Number of Tests Performed
+
 ❖ Load date
 
 
