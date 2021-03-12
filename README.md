@@ -1,4 +1,4 @@
-# ETL-Python-Multithreading
+# ETL on Health Data in New York state for COVID-19 test
 Performing ETL on Health Data of New York State.
 
 # Technologies used:
